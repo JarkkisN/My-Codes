@@ -1,0 +1,22 @@
+﻿<Window
+ xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+ xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+ xml:lang="en-US"
+ x:Class="JarkonNotepad.MainApp"
+ x:Name="Window"
+ Title="JarkonNotepad"
+ Width="640" Height="480" Closing="AppClosing">
+    <Grid x:Name="gridMain">
+        <Menu Margin="0,0,2,0" x:Name="menuMain" VerticalAlignment="Top" Height="20">
+            <MenuItem x:Name="mnuFile" Header="File">
+                <MenuItem x:Name="mnuItemNew" Header="New" Click="NewItem"/>
+                <MenuItem x:Name="mnuItemOpen" Header="Open" Click="OpenItem"/>
+                <MenuItem x:Name="mnuItemSave" Header="Save" Click="SaveItem"/>
+                <MenuItem RenderTransformOrigin="0.498,-1.5" x:Name="mnuItemSaveAs" Header="Save As..." Click="SaveAsItem"/>
+                <Separator/>
+                <MenuItem x:Name="mnuItemExit" Header="Exit" Click="ExitItem"/>
+            </MenuItem>
+        </Menu>
+        <TextBox Margin="0,20,0,0" x:Name="txtBoxContent" FontFamily="Courier New" Text="" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" GotFocus="FocusChanged" KeyDown="ContentChanged"/>
+    </Grid>
+</Window>
