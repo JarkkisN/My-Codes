@@ -35,7 +35,7 @@ namespace JarkonNotepad
             ProcessNewCommand();
         }
         //
-        // Kun "New" on valittu menusta
+        // Kun "Open" on valittu menusta
         //
         private void OpenItem(object sender, RoutedEventArgs e)
         {
@@ -56,6 +56,13 @@ namespace JarkonNotepad
             ShowSaveDialog();
         }
         //
+        // Kun "Print" on valittu menusta
+        //
+        private void PrintItem(object sender, RoutedEventArgs e)
+        {
+            ProcessPrintCommand();
+        }
+        //
         // Kun "Exit" on valittu menusta
         //
         private void ExitItem(object sender, RoutedEventArgs e)
@@ -69,6 +76,13 @@ namespace JarkonNotepad
             {
                 this.Close();
             }
+        }
+        //
+        // Kun "Font" on valittu menusta
+        //
+        private void FontItem(object sender, RoutedEventArgs e)
+        {
+            ProcessFontCommand();
         }
         //
         // Näytä "Open File" valintaikkuna
@@ -215,6 +229,29 @@ namespace JarkonNotepad
             }
         }
         //
+        // Printataan asiakirja
+        //
+        private void ProcessPrintCommand()
+        {
+            PrintDialog printDialog = new PrintDialog();
+            if (printDialog.ShowDialog() == true)
+            {
+                printDialog.PrintVisual(txtBoxContent, "This is working");
+            }
+        }
+        //
+        // Fontin muokkaaminen TODO
+        //
+        private void ProcessFontCommand()
+        {
+            FontWindow fontWindow = new FontWindow();
+            fontWindow.Show();
+        }
+        public void ChangeFont(int scale)
+        {
+            txtBoxContent.FontSize = scale;
+        }
+        //
         // Tallennetaan asiakirja ennen sovelluksen sulkemista
         //
         private void AppClosing(object sender, CancelEventArgs e)
@@ -231,13 +268,38 @@ namespace JarkonNotepad
         {
             dataChanged = true;
         }
-
         //
-        // Tämä tarkistetaan, onko sisältö muuttunut
+        // Tarkistetaan, onko sisältö muuttunut
         //
         private void FocusChanged(object sender, RoutedEventArgs e)
         {
             dataChanged = true;
+        }
+        //
+        // Pikavalinnat Save, New, Open ja print
+        //
+        private void KeyCombinations(object sender, KeyEventArgs e)
+        {
+            // Ctrl + S
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.S))
+            {
+                ProcessSaveCommand();
+            }
+            // Ctrl + N
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.N))
+            {
+                ProcessNewCommand();
+            }
+            // Ctrl + O
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.O))
+            {
+                ProcessOpenCommand();
+            }
+            // Ctrl + P
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.P))
+            {
+                ProcessPrintCommand();
+            }
         }
         //
         // Muutetaan ikkunan otsikkoa niin, että se sisältää tiedoston nimen, kun se avataan tai tallennetaan

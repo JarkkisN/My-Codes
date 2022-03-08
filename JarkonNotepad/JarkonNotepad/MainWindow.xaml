@@ -5,18 +5,27 @@
  x:Class="JarkonNotepad.MainApp"
  x:Name="Window"
  Title="JarkonNotepad"
- Width="640" Height="480" Closing="AppClosing">
+ Width="640" Height="480" Closing="AppClosing" KeyUp="KeyCombinations">
     <Grid x:Name="gridMain">
         <Menu Margin="0,0,2,0" x:Name="menuMain" VerticalAlignment="Top" Height="20">
             <MenuItem x:Name="mnuFile" Header="File">
-                <MenuItem x:Name="mnuItemNew" Header="New" Click="NewItem"/>
-                <MenuItem x:Name="mnuItemOpen" Header="Open" Click="OpenItem"/>
-                <MenuItem x:Name="mnuItemSave" Header="Save" Click="SaveItem"/>
+                <MenuItem x:Name="mnuItemNew" InputGestureText="Ctrl+N" Header="New" Click="NewItem"/>
+                <MenuItem x:Name="mnuItemOpen" InputGestureText="Ctrl+O" Header="Open" Click="OpenItem"/>
+                <MenuItem x:Name="mnuItemSave" InputGestureText="Ctrl+S" Header="Save" Click="SaveItem"/>
                 <MenuItem RenderTransformOrigin="0.498,-1.5" x:Name="mnuItemSaveAs" Header="Save As..." Click="SaveAsItem"/>
+                <MenuItem x:Name="mnuItemPrint" InputGestureText="Ctrl+P" Header="Print" Click="PrintItem"/>
                 <Separator/>
                 <MenuItem x:Name="mnuItemExit" Header="Exit" Click="ExitItem"/>
             </MenuItem>
+            <MenuItem x:Name="mnuEdit" Header="Edit">
+                <MenuItem Header="Copy" Command="ApplicationCommands.Copy"/>
+                <MenuItem Header="Paste" Command="ApplicationCommands.Paste"/>
+            </MenuItem>
+            <MenuItem x:Name="mnuFormat" Header="Format">
+                <MenuItem x:Name="mnuItemFont" Header="Font" Click="FontItem"/>
+            </MenuItem>
         </Menu>
-        <TextBox Margin="0,20,0,0" x:Name="txtBoxContent" FontFamily="Courier New" Text="" TextWrapping="Wrap" AcceptsReturn="True" AcceptsTab="True" VerticalScrollBarVisibility="Auto" GotFocus="FocusChanged" KeyDown="ContentChanged"/>
+        <TextBox Margin="0,20,0,0" x:Name="txtBoxContent" FontFamily="Courier New" Text="" TextWrapping="Wrap" AcceptsReturn="True"
+                 AcceptsTab="True" VerticalScrollBarVisibility="Auto" GotFocus="FocusChanged" KeyDown="ContentChanged"/>
     </Grid>
 </Window>
