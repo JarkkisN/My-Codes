@@ -1,5 +1,6 @@
-# Olio-ohjelmointi-HAMK-2022
-Kurssin tehtäviä:
-- Notepad
-- Laskin
-- Lisää tulossa...
+# My Codes
+## Jarkko Niemi
+
+- JarkonNotepad (Notepad)
+- LaskinOhjelma (Calculator)
+- Small scripts made in Linux-course
